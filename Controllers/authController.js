@@ -1,6 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const UsersModel = require('../models/Users');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const handleLogin = async (req, res) => {
 
@@ -13,7 +16,13 @@ const handleLogin = async (req, res) => {
     //Compare Password
     const isMatch = await bcrypt.compare(password, user.password);
     if(!isMatch) return res.status(401).send("Wrong Password"); //Unauthorized
-    res.status(200).send(user);
+
+    // JWT Token
+    // Access Token
+    const accessToken = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.status(200).json({accessToken,user});
+    
+
 }   // end handleLogin
 
 

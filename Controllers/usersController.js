@@ -4,6 +4,7 @@ const UsersModel = require('../models/Users');
 
 
 
+
 const getAllUsers = (req, res) => { // get all users
     UsersModel.find({}, (err, users) => {
         if (err) {

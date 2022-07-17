@@ -29,7 +29,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', usersRoute);
 app.use('/login', auth);
+const PORT = process.env.PORT || 3002;
 
-app.listen(4000, () => console.log('listening on port 4000'));
+app.listen(PORT, () => console.log(`Server Started on Port ${PORT}`));
 
 module.exports = app;

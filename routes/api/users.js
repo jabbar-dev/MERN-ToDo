@@ -7,6 +7,14 @@ router.route('/')
     .get(verifyJWT,usersController.getAllUsers)
     .post(usersController.addUser)
 
+router.route('/:id')
+    .delete(verifyJWT,usersController.deleteUser)
+router.route('/:id')
+    .put(usersController.updateUser)
+    
+router.route('/:id')
+    .get(usersController.getUser)
+
 
 
 

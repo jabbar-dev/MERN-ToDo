@@ -22,7 +22,7 @@ const addUser = async (req, res) => { // add user
     if(!username || !password) return res.status(400).json({"message":"Missing user or password"});
 
     const duplicate = await UsersModel.findOne({username});
-    if(duplicate) return res.status(409).send("Conflict"); //Conflict
+    if(duplicate) return res.status(409).json({error:"Conflict"}); //Conflict
 
      //Encrypt Password
      const hashedPWD = await bcrypt.hash(req.body.password, 10); 
